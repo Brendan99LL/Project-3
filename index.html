@@ -10,8 +10,8 @@
     <!-- Bootstrap Style Sheet-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <!--CSS -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -32,7 +32,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-20 p-0 text-center bg-light">
+        <div class="col-md-12 p-0 text-center bg-light">
         <h1>COVID-19 STATUS DASHBOARD</h1>
         <p>Interactive charts to explore the US COVID-19 datasets in 2020 & 2021</p>
     </div>
@@ -40,59 +40,101 @@
 <br/>
 
 
-
-<div class="container zero-padding">
+<div class="container">
     <div class="row">
+        <!-- Filters Column -->
         <div class="col-md-3 p-0 text-left bg-light">
-            <div class="card card-body bg-light">
+            <!-- Year Filter -->
+            <div class="card card-body bg-light mb-2">
                 <p><b>Year</b></p>
-                <select id="selDataset1" onchange="optionChanged(this.value)"></select>
+                <select id="selDataset1" multiple size="5" onchange="optionChanged(this)">
+                    <!-- Options will be populated here -->
+                </select>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 p-0 text-left bg-light">
-            <div class="card card-body bg-light">
+            <!-- Month Filter -->
+            <div class="card card-body bg-light mb-2">
                 <p><b>Month</b></p>
-                <select id="selDataset3" onchange="optionChanged(this.value)"></select>
+                <select id="selDataset1" multiple size="5" onchange="optionChanged(this)">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 p-0 text-left bg-light">
-            <div class="card card-body bg-light">
+            <!-- State Filter -->
+            <div class="card card-body bg-light mb-2">
                 <p><b>State</b></p>
                 <select id="selDataset3" onchange="optionChanged(this.value)"></select>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 p-0 text-left bg-light">
-            <div class="card card-body bg-light">
+            <!-- Age Filter -->
+            <div class="card card-body bg-light mb-2">
                 <p><b>Age</b></p>
-                <select id="selDataset3" onchange="optionChanged(this.value)"></select>
+                <select id="selDataset4" onchange="optionChanged(this.value)"></select>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 p-0 text-left bg-light">
-            <div class="card card-body bg-light">
+            <!-- Condition Group Filter -->
+            <div class="card card-body bg-light mb-2">
                 <p><b>Condition Group</b></p>
-                <select id="selDataset3" onchange="optionChanged(this.value)"></select>
+                <select id="selDataset5" onchange="optionChanged(this.value)"></select>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 p-0 text-left bg-light">
-            <div class="card card-body bg-light">
+            <!-- Condition Filter -->
+            <div class="card card-body bg-light mb-2">
                 <p><b>Condition</b></p>
-                <select id="selDataset3" onchange="optionChanged(this.value)"></select>
+                <select id="selDataset6" onchange="optionChanged(this.value)"></select>
             </div>
         </div>
+
+        <!-- Map Column -->
+        <div class="col-md-6">
+            <div id="map"></div>
+        </div>
+        <!-- bar graph_1-->
+        <div class="col-md-2">
+            <div id="bar"></div>
+        </div>
+        <!-- bar graph_2-->
+        <div class="col-md-2">
+        <div id="bar"></div>
+        </div>
+        <!-- pie chart_1-->
+        <div class="col-md-2">
+            <div id="pie"></div>
+        </div>
+        <!-- pie chart_2-->
+        <div class="col-md-2">
+            <div id="pie"></div>
+        </div>
+        <!-- line chart_1-->
+        <div class="col-md-5">
+            <div id="line"></div>
+        </div>
+        <!-- line chart_2-->
+        <div class="col-md-5">
+            <div id="line"></div>
+        </div>
+        
+
     </div>
 </div>
 
+
+
+    </div>
+</div>
+
+
 <script type="text/javascript" src="logic/map_logic.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="./static/js/filter.js"></script>
+<script src="./static/js/map.js"></script>
 
 </body>
 
