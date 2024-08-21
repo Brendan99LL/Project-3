@@ -1,5 +1,5 @@
 // Load and process the CSV file for the filter "Year"
-d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data) {
+d3.csv("Resources/filtered_covid_data.csv").then(function(data) {
     // Ensure data is loaded
     console.log("Data loaded:", data);
 
@@ -23,7 +23,7 @@ d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data
 
 // Load and process the CSV file for the filter "Month"
 
-d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data) {
+d3.csv("Resources/filtered_covid_data.csv").then(function(data) {
     
     // Ensure data is loaded
     console.log("Data loaded:", data);
@@ -46,7 +46,7 @@ d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data
 
 // Load and process the CSV file for the filter "State"
 
-d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data) {
+d3.csv("Resources/filtered_covid_data.csv").then(function(data) {
     
     // Ensure data is loaded
     console.log("Data loaded:", data);
@@ -69,7 +69,7 @@ d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data
 
 // Load and process the CSV file for the filter "age group"
 
-d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data) {
+d3.csv("Resources/filtered_covid_data.csv").then(function(data) {
     
     // Ensure data is loaded
     console.log("Data loaded:", data);
@@ -92,7 +92,7 @@ d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data
 
 // Load and process the CSV file for the filter "condition group"
 
-d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data) {
+d3.csv("Resources/filtered_covid_data.csv").then(function(data) {
     
     // Ensure data is loaded
     console.log("Data loaded:", data);
@@ -116,7 +116,7 @@ d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data
 
 // Load and process the CSV file for the filter "condition"
 
-d3.csv("Resources/filtered_covid_data_without_age_group.csv").then(function(data) {
+d3.csv("Resources/filtered_covid_data.csv").then(function(data) {
     
     // Ensure data is loaded
     console.log("Data loaded:", data);

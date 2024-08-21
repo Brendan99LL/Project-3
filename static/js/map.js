@@ -1,16 +1,16 @@
 // Creating the map object
-let myMap = L.map("map", {
+let map = L.map("map", {
     center: [44.5828, -103.46],
     zoom: 4
 });
 
 // Adding the tile layer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(myMap);
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetmap</a> contributors'
+}).addTo(map);
 
 // Use this link to get the GeoJSON data.
-let link = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/15-Mapping-Web/nyc.geojson";
+let link = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/15-mapping-Web/nyc.geojson";
 
 // The function that will determine the color of a neighborhood based on the borough that it belongs to
 function chooseColor(borough) {
@@ -56,12 +56,12 @@ d3.json(link).then(function(data) {
         },
         // When a feature (neighborhood) is clicked, it enlarges to fit the screen.
         click: function(event) {
-            myMap.fitBounds(event.target.getBounds());
+            map.fitBounds(event.target.getBounds());
         }
         });
       // Giving each feature a popup with information that's relevant to it
         layer.bindPopup("<h1>" + feature.properties.neighborhood + "</h1> <hr> <h2>" + feature.properties.borough + "</h2>");
 
     }
-    }).addTo(myMap);
+    }).addTo(map);
 });
