@@ -26,9 +26,9 @@
     crossorigin=""></script>
     <!-- D3 library -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- filter.js file-->
-    <!-- <script src="./static/js/filter.js"></script> -->
-    <script src="./static/js/filter_v2.js"></script>
+    <!-- own javescript files -->
+    <script src="./static/js/filter.js"></script>
+    <script src="./static/js/chart.js"></script>
     <script src="./static/js/map.js"></script>
 </head>
 
@@ -46,84 +46,69 @@
 
 <div class="container">
     <div class="row">
-        <!-- Filters Column -->
-        <div class="col-md-3 p-0 text-left bg-light">
-            <!-- Year Filter -->
+        <!-- Year Filter -->
+        <div class="col-md-4 p-0 text-left bg-light">
             <div class="card card-body bg-light mb-2">
                 <p><b>Year</b></p>
                 <select id="selDataset1" multiple size="2" onchange="optionChanged(this)">
-                    
                 </select>
             </div>
-            <!-- Month Filter -->
+        </div>
+        <!-- Month Filter -->
+        <div class="col-md-4 p-0 text-left bg-light">
             <div class="card card-body bg-light mb-2">
                 <p><b>Month</b></p>
                 <select id="selDataset2" multiple size="4" onchange="optionChanged(this)">
                 </select>
             </div>
-            <!-- State Filter -->
+        </div>
+        <!-- State Filter -->
+        <div class="col-md-4 p-0 text-left bg-light">
             <div class="card card-body bg-light mb-2">
                 <p><b>State</b></p>
                 <select id="selDataset3" multiple size="4" onchange="optionChanged(this)">
                 </select>
             </div>
-            <!-- Age Filter -->
-            <div class="card card-body bg-light mb-2">
-                <p><b>Age</b></p>
-                <select id="selDataset4" onchange="optionChanged(this.value)"></select>
-            </div>
-            <!-- Condition Group Filter -->
-            <div class="card card-body bg-light mb-2">
-                <p><b>Condition Group</b></p>
-                <select id="selDataset5" onchange="optionChanged(this.value)"></select>
-            </div>
-            <!-- Condition Filter -->
-            <div class="card card-body bg-light mb-2">
-                <p><b>Condition</b></p>
-                <select id="selDataset6" onchange="optionChanged(this.value)"></select>
-            </div>
         </div>
-
-        <!-- Map Column -->
+    </div>
+        
+    <div class="row">
+        <!-- Map Column
         <div class="col-md-6">
             <div id="map"></div>
-        </div>
+        </div> -->
         <!-- bar graph_1-->
-        <div class="col-md-2">
-            <div id="bar"></div>
+        <div class="col-md-6">
+            <div id="bar1"></div>
         </div>
         <!-- bar graph_2-->
-        <div class="col-md-2">
-        <div id="bar"></div>
+        <div class="col-md-6">
+        <div id="bar2"></div>
         </div>
-        <!-- pie chart_1-->
-        <div class="col-md-2">
-            <div id="pie"></div>
+    </div>
+    <div class="row">
+        <!-- Time Series chart_1-->
+        <div class="col-md-12">
+            <div id="line1"></div>
         </div>
-        <!-- pie chart_2-->
-        <div class="col-md-2">
-            <div id="pie"></div>
+        <!-- Time Series chart_2
+        <div class="col-md-12">
+            <div id="line2"></div>
         </div>
-        <!-- line chart_1-->
-        <div class="col-md-5">
-            <div id="line"></div>
+        pie chart_1
+        <div class="col-md-4">
+            <div id="pie1"></div>
         </div>
-        <!-- line chart_2-->
-        <div class="col-md-5">
-            <div id="line"></div>
+        pie chart_2
+        <div class="col-md-4">
+            <div id="pie2"></div>
         </div>
-        
-
+        -->
     </div>
 </div>
 
 
-
-    </div>
-</div>
-
-
-<script type="text/javascript" src="logic/map.js"></script>
+<script type="text/javascript" src="static/js/map.js"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 

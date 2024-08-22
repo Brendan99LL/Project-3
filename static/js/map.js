@@ -12,16 +12,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Use this link to get the GeoJSON data.
 let link = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/15-mapping-Web/nyc.geojson";
 
-// The function that will determine the color of a neighborhood based on the borough that it belongs to
-function chooseColor(borough) {
-    if (borough == "Brooklyn") return "yellow";
-    else if (borough == "Bronx") return "red";
-    else if (borough == "Manhattan") return "orange";
-    else if (borough == "Queens") return "green";
-    else if (borough == "Staten Island") return "purple";
-    else return "black";
-}
-
 // Getting our GeoJSON data
 d3.json(link).then(function(data) {
   // Creating a GeoJSON layer with the retrieved data
