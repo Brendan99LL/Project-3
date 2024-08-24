@@ -4,15 +4,100 @@ function buildCharts() {
 
         // Get selected filter values
         let selectedYear = d3.select("#selDataset1").property("value") || "all";
-        let selectedMonth = d3.select("#selDataset2").property("value") || "all";
-        let selectedState = d3.select("#selDataset3").property("value") || "all";
+        let selectedState = d3.select("#selDataset2").property("value") || "all";
+        let selectedAge = d3.select("#selDataset3").property("value") || "all";
 
         // Filter the data based on the selected filters
         let filteredData = data.filter(d => 
             (selectedYear === "all" || d.Year === selectedYear) &&
-            (selectedMonth === "all" || d.Month === selectedMonth) &&
-            (selectedState === "all" || d.State === selectedState)
+            (selectedState === "all" || d.State === selectedState) &&
+            (selectedAge === "all" || d["Age Group"] === selectedAge)
         );
+
+// Pie Chart Start
+
+      // Aggregate data for the pie chart (e.g., sum the number of COVID-19 deaths by Age Group)
+        let aggregatedAgeData = Array.from(
+        d3.rollup(filteredData, v => d3.sum(v, d => +d["COVID-19 Deaths"]), d => d["Age Group"]),
+        ([key, value]) => ({ Age_Group: key, Deaths: value })
+    );
+
+        // Build Pie Chart for age group
+        var donutAgeData = [
+            {
+                values: aggregatedAgeData.map(d => d.Deaths),
+                labels: aggregatedAgeData.map(d => d.Age_Group),
+                hole: .6,
+                type: "pie"
+            }
+        ];
+
+        var donutLayout = {
+            title: "COVID-19 Deaths by Age Group",
+            margin: { t: 30, l: 100 }
+        };
+
+        // Render the pie Chart in the 'donut1' div
+        Plotly.newPlot("donut", donutAgeData, donutLayout);
+
+// Pie Chart End
+
+// Timeseries Chart Start
+
+// Aggregate data for the time series chart (by year and month)
+let timeSeriesData = Array.from(
+    d3.rollup(filteredData, v => d3.sum(v, d => +d["COVID-19 Deaths"]), d => d.Year, d => d.Month),
+    ([year, months]) => ({
+        Year: year,
+        Months: Array.from(months, ([month, deaths]) => ({ Month: +month, Deaths: deaths })) // Convert month to number
+    })
+);
+
+// Prepare data for time series chart
+let years = timeSeriesData.map(d => d.Year);
+let lines = years.map(year => {
+    let monthData = timeSeriesData.find(d => d.Year === year).Months;
+
+    // Ensure all months 1-12 are present
+    let completeMonthData = [];
+    for (let i = 1; i <= 12; i++) {
+        let month = monthData.find(d => d.Month === i);
+        if (month) {
+            completeMonthData.push(month);
+        } else {
+            completeMonthData.push({ Month: i, Deaths: 0 }); // Fill missing months with 0 deaths
+        }
+    }
+
+    return {
+        x: completeMonthData.map(d => d.Month),
+        y: completeMonthData.map(d => d.Deaths),
+        type: "line",
+        mode: "lines+markers",
+        name: year,
+    };
+});
+
+// Build Time Series Chart
+var timeseriesLayout = {
+    title: "COVID-19 Deaths over Time",
+    xaxis: {
+        title: "Month",
+        tickmode: "array",
+        tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        ticktext: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    },
+    yaxis: { title: "Deaths" },
+    margin: { t: 50, l: 50 }
+};
+
+// Render the Time Series Chart in the 'line' div
+Plotly.newPlot("line", lines, timeseriesLayout);
+
+// Timeseries Chart End
+
+
+// Bar Cart Start
 
         // Aggregate data for the bar chart (e.g., sum the number of COVID-19 deaths by state)
         let aggregatedData = Array.from(
@@ -51,7 +136,7 @@ function buildCharts() {
 
         var barLayoutTop5 = {
             title: "Top 5 States by COVID-19 Deaths",
-            margin: { t: 30, l: 150 }
+            margin: { t: 30, l: 100 }
         };
 
         // Render the Bar Chart in the 'bar1' div
@@ -69,57 +154,13 @@ function buildCharts() {
 
         var barLayoutBottom5 = {
             title: "Bottom 5 States by COVID-19 Deaths",
-            margin: { t: 30, l: 150 }
+            margin: { t: 30, l: 100 }
         };
 
         // Render the Bar Chart in the 'bar2' div
         Plotly.newPlot("bar2", barDataBottom5, barLayoutBottom5);
-
-        // Helper function to convert month names to numbers
-        const monthToNumber = (month) => {
-            const months = {
-                "January": 1, "February": 2, "March": 3, "April": 4, 
-                "May": 5, "June": 6, "July": 7, "August": 8, 
-                "September": 9, "October": 10, "November": 11, "December": 12
-            };
-            return months[month] || 0;
-        };
-
-        // Aggregate data for the time series chart (by year and month)
-        let timeSeriesData = Array.from(
-            d3.rollup(filteredData, v => d3.sum(v, d => +d["COVID-19 Deaths"]), d => d.Year, d => d.Month),
-            ([year, months]) => ({
-                Year: year,
-                Months: Array.from(months, ([month, deaths]) => ({ Month: month, Deaths: deaths }))
-            })
-        );
-
-        // Prepare data for time series chart
-        let years = timeSeriesData.map(d => d.Year);
-        let lines = years.map(year => {
-            let monthData = timeSeriesData.find(d => d.Year === year).Months;
-            // Sort months by numeric value
-            monthData.sort((a, b) => monthToNumber(a.Month) - monthToNumber(b.Month));
-            return {
-                x: monthData.map(d => d.Month),
-                y: monthData.map(d => d.Deaths),
-                type: "line",
-                mode: "lines+markers",
-                name: year
-            };
-        });
-
-        // Build Time Series Chart
-        var timeseriesLayout = {
-            title: "COVID-19 Deaths over Time",
-            xaxis: { title: "Month" },
-            yaxis: { title: "Deaths" },
-            margin: { t: 30, l: 150 }
-        };
-
-        // Render the Time Series Chart in the 'line1' div
-        Plotly.newPlot("line1", lines, timeseriesLayout);
     });
+// Bar Chart End
 }
 
 // Function to set default filter values

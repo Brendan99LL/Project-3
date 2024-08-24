@@ -57,7 +57,7 @@
         <!-- Month Filter -->
         <div class="col-md-4 p-0 text-left bg-light">
             <div class="card card-body bg-light mb-2">
-                <p><b>Month</b></p>
+                <p><b>State</b></p>
                 <select id="selDataset2" multiple size="4" onchange="optionChanged(this)">
                 </select>
             </div>
@@ -65,18 +65,31 @@
         <!-- State Filter -->
         <div class="col-md-4 p-0 text-left bg-light">
             <div class="card card-body bg-light mb-2">
-                <p><b>State</b></p>
+                <p><b>Age Group</b></p>
                 <select id="selDataset3" multiple size="4" onchange="optionChanged(this)">
                 </select>
             </div>
         </div>
     </div>
-        
+    
+    <!-- <div class="row">
+    Map Column
+    <div class="col-md-6">
+        <div id="map"></div>
+    </div> 
+    </div> -->
+
     <div class="row">
-        <!-- Map Column
-        <div class="col-md-6">
-            <div id="map"></div>
-        </div> -->
+        <!-- Pie Chart_1-->
+        <div class="col-md-4">
+            <div id="donut"></div>
+        </div>
+        <!-- Time Series chart_1-->
+        <div class="col-md-8">
+            <div id="line"></div>
+        </div>
+    </div>
+    <div class="row">
         <!-- bar graph_1-->
         <div class="col-md-6">
             <div id="bar1"></div>
@@ -86,27 +99,7 @@
         <div id="bar2"></div>
         </div>
     </div>
-    <div class="row">
-        <!-- Time Series chart_1-->
-        <div class="col-md-12">
-            <div id="line1"></div>
-        </div>
-        <!-- Time Series chart_2
-        <div class="col-md-12">
-            <div id="line2"></div>
-        </div>
-        pie chart_1
-        <div class="col-md-4">
-            <div id="pie1"></div>
-        </div>
-        pie chart_2
-        <div class="col-md-4">
-            <div id="pie2"></div>
-        </div>
-        -->
-    </div>
 </div>
-
 
 <script type="text/javascript" src="static/js/map.js"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>

@@ -16,6 +16,7 @@
 .col-md-6 #line, .col-md-4 #pie {
     flex: 1;
     margin-top: 20px; /*add spacing*/
+    margin-left: 0px;
 }
 
 @media (max-width: 768px) {
