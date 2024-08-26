@@ -163,7 +163,7 @@ function buildCharts() {
 
 
         // Apply the color scale to each bar
-        let barColorsBottom5 = deathsBottom5.map(d => colorScaleBottom5(d));
+        let barColorsBottom5 = deathsBottom5.map(d => colorScaleBottom5(d)).reverse();
 
         // Build Bar Chart for top 5 states (sorted in descending order)
         var barDataTop5 = [
