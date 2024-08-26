@@ -33,7 +33,17 @@ function buildCharts() {
                 values: aggregatedAgeData.map(d => d.Deaths),
                 labels: aggregatedAgeData.map(d => d.Age_Group),
                 hole: .6,
-                type: "pie"
+                type: "pie",
+                legend: {
+                    x: 0.4,
+                    y: 0.4,
+                    font: {
+                        size:4
+                    }
+                },
+                textfont: {
+                    size: 8 // Adjust the font size here to make the labels smaller
+                }
             }
         ];
 
@@ -91,7 +101,17 @@ function buildCharts() {
                 ticktext: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
             },
             yaxis: { title: "Deaths" },
-            margin: { t: 50, l: 50 }
+            margin: { t: 50, l: 50, r: 50, b: 50 }, // Adjust margins as needed
+            legend: {
+                x: 0.9,         // Position the legend inside the graph, near the right edge
+                y: 0.9,         // Position the legend near the top of the graph
+                xanchor: "right", // Anchor the legend's x position to the right
+                yanchor: "top",   // Anchor the legend's y position to the top
+                font: {
+                    size: 10    // Adjust the font size for the legend text
+                },
+                bgcolor: "rgba(255, 255, 255, 0.5)" // Optional: Add a background color to make the legend readable
+            }
         };
 
         // Render the Time Series Chart in the 'line' div
@@ -119,10 +139,31 @@ function buildCharts() {
         let deathsTop5 = top5Data.map(d => d.Deaths);
         statesTop5.reverse();
         deathsTop5.reverse();
+        
+        let maxDeathsTop5 = d3.max(deathsTop5);
+        let minDeathsTop5 = d3.min(deathsTop5);
+        let colorScaleTop5 = d3.scaleLinear()
+            .domain([minDeathsTop5, maxDeathsTop5])
+            .range(["#ffcccc", "#cc0000"]); // Light red to dark red
+
+        // Apply the color scale to each bar
+        let barColorsTop5 = deathsTop5.map(d => colorScaleTop5(d));
+
 
         // Prepare data for bar2
         let statesBottom5 = bottom5Data.map(d => d.State);
         let deathsBottom5 = bottom5Data.map(d => d.Deaths);
+
+        // Generate a color scale for the bottom 5 (green gradation)
+        let maxDeathsBottom5 = d3.max(deathsBottom5);
+        let minDeathsBottom5 = d3.min(deathsBottom5);
+        let colorScaleBottom5 = d3.scaleLinear()
+            .domain([minDeathsBottom5, maxDeathsBottom5])
+            .range(["#ccffcc", "#006600"]); // Light green to dark green
+
+
+        // Apply the color scale to each bar
+        let barColorsBottom5 = deathsBottom5.map(d => colorScaleBottom5(d));
 
         // Build Bar Chart for top 5 states (sorted in descending order)
         var barDataTop5 = [
@@ -131,6 +172,9 @@ function buildCharts() {
                 x: deathsTop5,
                 type: "bar",
                 orientation: "h",
+                marker: {
+                    color: barColorsTop5 // Apply color gradation
+                }
             }
         ];
 
@@ -149,6 +193,9 @@ function buildCharts() {
                 x: deathsBottom5,
                 type: "bar",
                 orientation: "h",
+                marker: {
+                    color: barColorsBottom5 // Apply color gradation
+                }
             }
         ];
 
