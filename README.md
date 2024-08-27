@@ -21,8 +21,8 @@ Data for the death toll of the United States within the years 2020-2023 has been
 
 # Death Toll of COVID-19 
 
-<ol>
-The focal point of this topic will be the Death toll but, there are key points that will be discussed such as:  
+**The focal point of this topic will be the Death toll but, there are key points that will be discussed such as:**
+<ol> 
   <li>COVID-19 Deaths in the United States (Per State). </li>
   <li>Top 5 States with the Highest Death Toll. </li>
   <li>Bottom 5 States with the Lowest Death Toll. </li>
