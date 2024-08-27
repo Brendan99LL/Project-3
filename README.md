@@ -23,10 +23,12 @@ The focal point of this topic will be the Death toll but, there are key points t
   <li>Bottom 5 States with the Lowest Death Toll. </li>
   <li>COVID-19 Deaths in the United States According to Age Groups. </li>
   <li>Overview of Total COVID-19 Death Toll in the United States thru 2020-2023. </li>
+</ol>
 
 Once the data is filtered then, the next step is the removal of the categories/filters: (All ages, By Month, New York City, District of Columbia, Puerto Rico, United States, and Subcategory of COVID-19 (repetitive). This is to create a visual to illustrate the States of the United States and to avoid the data to display any outliers that would be displayed and remove redundancy. Afterwards, the following data (State, Year, and Month) is sorted to assist with the clarity of the information. Lastly, to be able to filter the null value to zero of the data if this may have been due to the data that may have been incomplete or missing.  
 
 # Visualizations: 
+
 **Choropleth Map of the United States:** 
 This illustrates an overview of the map of the United States. There are various layers that can be added and taken away to show the death toll within each individual states compared to the rest. Also, the data shown for each individual state the population (during 2023), as well the density of those states and the overall death toll % (rate per 10,000). 
 
