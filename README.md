@@ -36,6 +36,9 @@ Once the data is filtered then, the next step is the removal of the categories/f
 **Choropleth Map of the United States:** 
 This illustrates an overview of the map of the United States. There are various layers that can be added and taken away to show the death toll within each individual states compared to the rest. Also, the data shown for each individual state the population (during 2023), as well the density of those states and the overall death toll % (rate per 10,000). 
 
+The following link shows the choropleth map indicating the death ratios per state through the years of the COVID-19 outbreak.  Data for the map has been stored in a different repository and published so that anyone can interact with it using the following link:
+https://brendan99ll.github.io/MapRepo/
+
 <ul>
   <li>Population of State (2023)</li>
   <li>Density within the State</li>
